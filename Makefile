@@ -1,9 +1,27 @@
-modules = user
+modules = users
 
-unit::
-	@echo Running unit_test ....
-	@coverage run --omit="fann/*,**/migrations/*,manage.py,**/test*" \
-	 	manage.py test --testrunner runners.Unit_runner
+all: flakes test
+
+full_test:: run_unit_tests run_integration_tests run_acceptance_tests report html_report
+
+test:: run_unit_tests run_integration_tests report
+
+unit:: run_unit_tests report
+
+run_unit_tests:
+	@echo "Running UNIT tests..."
+	@coverage run --source=. --omit="manage.py/*,**/test*,venv/*"\
+		manage.py test -p"*.py" --testrunner test_runners.UnitRunner
+
+run_integration_tests:
+	@echo Running INTEGRATION tests...
+	@coverage run --source=. --omit="manage.py/*,**/test*,venv/*" -a\
+		manage.py test -p"*.py" --testrunner test_runners.IntegrationRunner
+
+run_acceptance_tests:
+	@echo Running ACCEPTANCE tests...
+	@coverage run --source=. --omit="manage.py/*,**/test*,venv/*" -a\
+		manage.py test -p"*.py" --testrunner test_runners.AcceptanceRunner
 
 report:
 	@coverage report
