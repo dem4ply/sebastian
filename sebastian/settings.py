@@ -38,7 +38,7 @@ INSTALLED_APPS = (
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'users',
-	#'document',
+	'document',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,7 +106,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es_MX'
 
 TIME_ZONE = 'UTC'
 
