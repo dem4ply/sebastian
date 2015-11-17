@@ -56,6 +56,13 @@ docs/_build/
 # PyBuilder
 target/
 
+#ambiente virtual de db
 venv
+
+#carpeta de contenido de coverage
+.html_coverage
+
+#bases de dato de sqlite3
+*.db
 
 *.sw*
